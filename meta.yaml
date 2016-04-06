@@ -1,5 +1,5 @@
 package:
-  name: anaconda-installer-nb-extension
+  name: anaconda-nb-extensions-meta-config
   version: {{ environ.get('GIT_DESCRIBE_TAG', '') }}
 
 source:
@@ -12,15 +12,6 @@ build:
 
 requirements:
   build:
-    - python
-    - notebook <5
-    - nbpresent
-    - nb_anacondacloud
-    - nb_conda_kernels
-    - nb_conda
-    - nbsetuptools
-    - nb_config_manager
-  run:
     - python
     - notebook <5
     - nbpresent
