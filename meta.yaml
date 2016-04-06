@@ -11,7 +11,6 @@ build:
   {% else %}string: py{{ environ.get('PY_VER').replace('.', '') }}_{{ environ.get('GIT_BUILD_STR', 'GIT_STUB') }}{% endif %}
   always_include_files:
     - etc/jupyter/*.json
-    - etc/jupyter/nbconfig/*.json
 
 requirements:
   build:
