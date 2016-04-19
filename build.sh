@@ -1,5 +1,4 @@
-"${PYTHON}" -m nb_anacondacloud.setup install --enable --prefix "${PREFIX}"
+"${PREFIX}/bin/jupyter-nbextension" enable nb_conda --py --sys-prefix --overwrite
+"${PREFIX}/bin/jupyter-nbextension" enable nb_anacondacloud --py --sys-prefix --overwrite
+"${PREFIX}/bin/jupyter-nbextension" enable nbpresent --py --sys-prefix --overwrite
 "${PYTHON}" -m nb_conda_kernels.install --enable --prefix "${PREFIX}"
-"${PYTHON}" -m nb_conda.setup install --enable --prefix "${PREFIX}"
-"${PYTHON}" -m nbpresent.install --overwrite --enable --prefix="${PREFIX}"
-ls "${PREFIX}/etc/jupyter"

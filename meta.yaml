@@ -15,13 +15,11 @@ build:
 requirements:
   build:
     - python
-    - notebook <5
-    - nbpresent
+    - notebook >=4.2.0
     - nb_anacondacloud
-    - nb_conda_kernels
     - nb_conda
-    - nbsetuptools
-    - nb_config_manager
+    - nb_conda_kernels
+    - nbpresent
 
 about:
   summary: A configuration metapackage for enabling Anaconda-bundled jupyter extensions
