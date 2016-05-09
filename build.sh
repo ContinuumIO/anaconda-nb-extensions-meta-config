@@ -1,3 +1,4 @@
+"${PREFIX}/bin/jupyter-nbextension" enable widgetsnbextension --py --sys-prefix
 "${PREFIX}/bin/jupyter-nbextension" enable nb_anacondacloud --py --sys-prefix
 "${PREFIX}/bin/jupyter-nbextension" enable nb_conda --py --sys-prefix
 "${PREFIX}/bin/jupyter-nbextension" enable nbpresent --py --sys-prefix
