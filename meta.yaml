@@ -6,7 +6,7 @@
   },
   "nb_conda_kernels": {
     "version": "1.0.0",
-    "custom": "python -m nb_conda_kernels.install --enable --prefix='{}'".format(PREFIX)
+    "custom": 'python -m nb_conda_kernels.install --enable --prefix "{}"'.format(PREFIX)
   },
   "nb_conda": {
     "version": "1.0.0",
