@@ -1,30 +1,70 @@
+{% set packages = {
+  "nb_anacondacloud": {
+    "version": "1.0.0",
+    "srv": True,
+    "js": True
+  },
+  "nb_conda_kernels": {
+    "version": "1.0.0",
+    "custom": "python -m nb_conda_kernels.install --enable --prefix='{}'".format(PREFIX)
+  },
+  "nb_conda": {
+    "version": "1.0.0",
+    "srv": True,
+    "js": True
+  },
+  "nbpresent": {
+    "version": "3.0.0",
+    "srv": True,
+    "js": True
+  },
+  # UNCOMMENT WHEN AVAILABLE THROUGH `defaults`
+  # "ipywidgets": {
+  #   "version": "5.1.4",
+  # },
+  # "widgetsnbextension": {
+  #   "version": "1.2.2",
+  #   "js": True
+  # },
+} %}
+
 package:
   name: anaconda-nb-extensions-meta-config
-  version: {{ environ.get('GIT_DESCRIBE_TAG', '') }}
+  version: "0.1.0"
 
 source:
-  git_url: .
+  path: .
 
 build:
-  number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
-  {% if environ.get('GIT_DESCRIBE_NUMBER', '0') == '0' %}string: py{{ environ.get('PY_VER').replace('.', '') }}_0
-  {% else %}string: py{{ environ.get('PY_VER').replace('.', '') }}_{{ environ.get('GIT_BUILD_STR', 'GIT_STUB') }}{% endif %}
+  number: 0
   always_include_files:
     - etc/jupyter/*.json
+  script:{% for name, meta in packages.items() -%}
+    {% if meta.get("js", 0) %}
+    - jupyter nbextension enable {{ name }} --py --sys-prefix{% endif %}{% if meta.get("srv", 0) %}
+    - jupyter serverextension enable {{ name }} --py --sys-prefix{% endif %}{% if meta.get("custom", 0) %}
+    - {{ meta["custom"] }}{% endif %}
+  {%- endfor %}
 
 requirements:
   build:
     - python
-    - notebook <5
-    - nbpresent
-    - nb_anacondacloud
-    - nb_conda_kernels
-    - nb_conda
-    - nbsetuptools
-    - nb_config_manager
+    - notebook >=4.2.0
+    {% for name, meta in packages.items() %}- {{ name }} >={{ meta["version"] }}
+    {% endfor %}
+  run:
+    - notebook >=4.2.0
+    - python
+    {% for name, meta in packages.items() %}- {{ name }} >={{ meta["version"] }}
+    {% endfor %}
+
+test:
+  commands:
+    - jupyter nbextension list
+    - jupyter serverextension list
 
 about:
   summary: A configuration metapackage for enabling Anaconda-bundled jupyter extensions
-  home: https://github.com/Anaconda-Server/anaconda-installer-nb-extension
+  home: https://github.com/ContinuumIO/anaconda-nb-extensions-meta-config
   license_file: LICENSE
-  license: BSD License
+  license: BSD-3-Clause
