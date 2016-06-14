@@ -1,33 +1,30 @@
 {% set packages = {
   "nb_anacondacloud": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "srv": True,
     "js": True
   },
   "nb_conda_kernels": {
-    "version": "1.0.0",
+    "version": "1.0.2",
     "custom": 'python -m nb_conda_kernels.install --enable --prefix "{}"'.format(PREFIX)
   },
   "nb_conda": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "srv": True,
     "js": True
   },
   "nbpresent": {
-    "version": "3.0.0",
+    "version": "3.0.2",
     "srv": True,
+    "js": True
+  },
+  "widgetsnbextension": {
+    "version": "1.2.3",
     "js": True
   },
 } %}
 
-# UNCOMMENT WHEN AVAILABLE THROUGH `defaults`
-# "ipywidgets": {
-#   "version": "5.1.4",
-# },
-# "widgetsnbextension": {
-#   "version": "1.2.2",
-#   "js": True
-# },
+
 
 package:
   name: anaconda-nb-extensions-meta-config

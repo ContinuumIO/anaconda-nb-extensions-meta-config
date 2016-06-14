@@ -13,6 +13,6 @@ engine:
   - python=3.5
 
 script:
-  - conda build . -c anaconda-nb-extensions
+  - conda build . -c anaconda-nb-extensions -c conda-forge
 
 build_targets: conda
